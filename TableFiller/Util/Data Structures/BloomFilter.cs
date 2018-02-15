@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,17 +49,24 @@ namespace TableFiller.Util.Data_Structures
         {
             //Attach name
             this.name = name;
-
+            
             saveFile = new FileStream((saveDir.FullName + name + ".blm"), FileMode.OpenOrCreate, FileAccess.ReadWrite,
                     FileShare.ReadWrite);
 
             if (saveFile.Length > 10)
             {
-                var ms = new MemoryStream(File.ReadAllBytes(saveFile.Name));
+
+               
+
+                
+
+                byte[] buffer = new byte[saveFile.Length];
+
+                saveFile.Read(buffer, 0, (int) saveFile.Length);
 
 
                 //It was a file before
-                var save = (Save) new BinaryFormatter().Deserialize(ms);
+                var save = (Save) new BinaryFormatter().Deserialize(new MemoryStream(buffer));
 
                 bitArray = save.Data;
                 limit = save.HashLimit;
@@ -105,14 +113,17 @@ namespace TableFiller.Util.Data_Structures
             var k = 20; //hash it 20 times , We've already hashed it once.
             for (int i = 0; i < k - 1; i++)
             {
+
+                //Get rid of negatives...
+                hash = Math.Abs(hash);
+                //Add to bit array
+                bitArray[hash % bitArray.Length] = true;
+                totalHashes++;
                 //Only good for 2^32 hashes
                 hash = hash.GetHashCode();
+
             }
-            //Get rid of negatives...
-            hash = Math.Abs(hash);
-            //Add to bit array
-            bitArray[hash % bitArray.Length] = true;
-            totalHashes++;
+            
 
             if (doAutoSave)
             {
@@ -127,16 +138,37 @@ namespace TableFiller.Util.Data_Structures
         /// <returns></returns>
         public  bool CheckFor(Object o)
         {
+            int good = 0;
+            int bad = 0;
             int hash = o.GetHashCode();
             var k = 20; //hash it 20 times , We've already hashed it once.
             for (int i = 0; i < k - 1; i++)
             {
                 hash = hash.GetHashCode();
+                hash = Math.Abs(hash);
+
+
+                //check from bit array at each spot, k times.
+                var check = bitArray[hash % bitArray.Length];
+                if (check)
+                {
+                    //if good
+                    good++;
+                }
+                else
+                {
+                    bad++;
+                }
             }
 
-            hash = Math.Abs(hash);
-            //check from bit array
-            return bitArray[hash % bitArray.Length];
+            if (bad < good)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
 
 
         }
@@ -158,10 +190,14 @@ namespace TableFiller.Util.Data_Structures
             //Save to disk
             var ms = new MemoryStream();
             var writer = new BinaryFormatter();
-            writer.Serialize(ms, save);
-            saveFile.Write(ms.ToArray(), 0, ms.ToArray().Length);
-            
 
+
+            
+            writer.Serialize(ms, save);
+            if(saveFile.CanRead &&saveFile.CanWrite)
+                saveFile.Write(ms.ToArray(), 0, ms.ToArray().Length);
+            
+            ms.Close();
 
         }
         /// <summary>
