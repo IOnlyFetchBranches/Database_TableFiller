@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WallyWorld" Class="WallyWorldDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-OQ6MOPB\SQLEXPRESS;Initial Catalog=WallyWorld;Integrated Security=True" SettingsObjectName="TableFiller.Properties.Settings" SettingsPropertyName="WallyWorldConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Departments" Member="Departments">
+    <Type Name="Department">
+      <Column Name="DID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="STRID" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="MEID" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="DPRTName" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="DPRTLastRestock" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Department_Employee" Member="Employees" ThisKey="DID" OtherKey="DID" Type="Employee" />
+      <Association Name="StoreInfo_Department" Member="StoreInfo" ThisKey="STRID" OtherKey="STRID" Type="StoreInfo" IsForeignKey="true" />
+      <Association Name="Employee_Department" Member="Employee" ThisKey="MEID" OtherKey="EID" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EmployeeContacts" Member="EmployeeContacts">
+    <Type Name="EmployeeContact">
+      <Column Name="Street" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="City" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="State" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Apt#" Member="Apt_" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Zip" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CellPhoneNumber" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="HomePhoneNumber" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="PrimaryEmail" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SecondaryEmail" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="EmergencyPhoneNumber" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EmergencyFirstName" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="EmergencyLastName" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="EmergencyEmail" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="EID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EmployeeDirectDepositInfo" Member="EmployeeDirectDepositInfos">
+    <Type Name="EmployeeDirectDepositInfo">
+      <Column Name="EID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AccountNumber" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="RoutingNumber" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EmployeeWages" Member="EmployeeWages">
+    <Type Name="EmployeeWage">
+      <Column Name="EID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HasDirectDeposit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Wage" Type="System.Decimal" DbType="Decimal(2,2)" CanBeNull="true" />
+      <Column Name="HoursWorked" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ExpectedSalary" Type="System.Decimal" DbType="Decimal(6,2)" CanBeNull="true" />
+      <Column Name="CurrentSalary" Type="System.Decimal" DbType="Decimal(6,2)" CanBeNull="true" />
+      <Column Name="StateTaxesPaid" Type="System.Decimal" DbType="Decimal(6,2)" CanBeNull="true" />
+      <Column Name="FederalTaxesPaid" Type="System.Decimal" DbType="Decimal(6,2)" CanBeNull="true" />
+      <Column Name="Bonuses" Type="System.Decimal" DbType="Decimal(6,2)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Regions" Member="Regions">
+    <Type Name="Region">
+      <Column Name="REGID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="rState" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="rCountry" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="Region_StoreInfo" Member="StoreInfos" ThisKey="REGID" OtherKey="REGID" Type="StoreInfo" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StoreInfo" Member="StoreInfos">
+    <Type Name="StoreInfo">
+      <Column Name="STRID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="REGID" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="MEID" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="SStreet" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="SCity" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="SState" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="SZip" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="StoreInfo_Department" Member="Departments" ThisKey="STRID" OtherKey="STRID" Type="Department" />
+      <Association Name="Region_StoreInfo" Member="Region" ThisKey="REGID" OtherKey="REGID" Type="Region" IsForeignKey="true" />
+      <Association Name="Employee_StoreInfo" Member="Employee" ThisKey="MEID" OtherKey="EID" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employees" Member="Employees">
+    <Type Name="Employee">
+      <Column Name="EID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DID" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Position" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="EnrollmentDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CurrentStatus" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="OffDaysUsed" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OffDaysEarned" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Employee_Department" Member="Departments" ThisKey="EID" OtherKey="MEID" Type="Department" />
+      <Association Name="Employee_StoreInfo" Member="StoreInfos" ThisKey="EID" OtherKey="MEID" Type="StoreInfo" />
+      <Association Name="Department_Employee" Member="Department" ThisKey="DID" OtherKey="DID" Type="Department" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
