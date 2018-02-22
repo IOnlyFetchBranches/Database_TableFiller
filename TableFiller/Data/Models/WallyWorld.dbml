@@ -12,44 +12,6 @@
       <Association Name="Employee_Department" Member="Employee" ThisKey="MEID" OtherKey="EID" Type="Employee" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.EmployeeContacts" Member="EmployeeContacts">
-    <Type Name="EmployeeContact">
-      <Column Name="Street" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="City" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="State" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="Apt#" Member="Apt_" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Zip" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CellPhoneNumber" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="HomePhoneNumber" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="PrimaryEmail" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="SecondaryEmail" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="EmergencyPhoneNumber" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="EmergencyFirstName" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="EmergencyLastName" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="EmergencyEmail" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="EID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.EmployeeDirectDepositInfo" Member="EmployeeDirectDepositInfos">
-    <Type Name="EmployeeDirectDepositInfo">
-      <Column Name="EID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="AccountNumber" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="RoutingNumber" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.EmployeeWages" Member="EmployeeWages">
-    <Type Name="EmployeeWage">
-      <Column Name="EID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="HasDirectDeposit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Wage" Type="System.Decimal" DbType="Decimal(2,2)" CanBeNull="true" />
-      <Column Name="HoursWorked" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ExpectedSalary" Type="System.Decimal" DbType="Decimal(6,2)" CanBeNull="true" />
-      <Column Name="CurrentSalary" Type="System.Decimal" DbType="Decimal(6,2)" CanBeNull="true" />
-      <Column Name="StateTaxesPaid" Type="System.Decimal" DbType="Decimal(6,2)" CanBeNull="true" />
-      <Column Name="FederalTaxesPaid" Type="System.Decimal" DbType="Decimal(6,2)" CanBeNull="true" />
-      <Column Name="Bonuses" Type="System.Decimal" DbType="Decimal(6,2)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Regions" Member="Regions">
     <Type Name="Region">
       <Column Name="REGID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -85,7 +47,51 @@
       <Column Name="OffDaysEarned" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Employee_Department" Member="Departments" ThisKey="EID" OtherKey="MEID" Type="Department" />
       <Association Name="Employee_StoreInfo" Member="StoreInfos" ThisKey="EID" OtherKey="MEID" Type="StoreInfo" />
+      <Association Name="Employee_EmployeeDirectDepositInfo" Member="EmployeeDirectDepositInfo" ThisKey="EID" OtherKey="EID" Type="EmployeeDirectDepositInfo" Cardinality="One" />
+      <Association Name="Employee_EmployeeContact" Member="EmployeeContact" ThisKey="EID" OtherKey="EID" Type="EmployeeContact" Cardinality="One" />
+      <Association Name="Employee_EmployeeWage" Member="EmployeeWage" ThisKey="EID" OtherKey="EID" Type="EmployeeWage" Cardinality="One" />
       <Association Name="Department_Employee" Member="Department" ThisKey="DID" OtherKey="DID" Type="Department" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EmployeeDirectDepositInfo" Member="EmployeeDirectDepositInfos">
+    <Type Name="EmployeeDirectDepositInfo">
+      <Column Name="EID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AccountNumber" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="RoutingNumber" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Association Name="Employee_EmployeeDirectDepositInfo" Member="Employee" ThisKey="EID" OtherKey="EID" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EmployeeContacts" Member="EmployeeContacts">
+    <Type Name="EmployeeContact">
+      <Column Name="Street" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="City" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="State" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Apt#" Member="Apt_" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Zip" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CellPhoneNumber" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="HomePhoneNumber" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="PrimaryEmail" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SecondaryEmail" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="EmergencyPhoneNumber" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EmergencyFirstName" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="EmergencyLastName" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="EmergencyEmail" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="EID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Employee_EmployeeContact" Member="Employee" ThisKey="EID" OtherKey="EID" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EmployeeWages" Member="EmployeeWages">
+    <Type Name="EmployeeWage">
+      <Column Name="EID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HasDirectDeposit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Wage" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="HoursWorked" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ExpectedSalary" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CurrentSalary" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="StateTaxesPaid" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FederalTaxesPaid" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Bonuses" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Employee_EmployeeWage" Member="Employee" ThisKey="EID" OtherKey="EID" Type="Employee" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

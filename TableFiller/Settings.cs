@@ -37,6 +37,10 @@ namespace TableFiller
 
 
         //Structs {Used to keep data consistent}
+        /// <summary>
+        /// Represets the result of an operation
+        /// Default constructor returns a good instance!
+        /// </summary>
         public struct Return
         {
 
@@ -81,7 +85,7 @@ namespace TableFiller
             }
 
 
-
+        
             //Constructors
             public Return(Status status)
             {

@@ -27,9 +27,9 @@ namespace TableFiller.Util.Data_Structures
 
 
         //Trigger this to save the filter after each run
-        private static bool doAutoSave = true; //Default is true
+        private static bool doAutoSave = false; //Default is true
         //Where to save
-        private  DirectoryInfo saveDir = Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "\\.filters\\");
+        private DirectoryInfo saveDir;
 
         private  FileStream saveFile;
         private string name;
@@ -49,8 +49,33 @@ namespace TableFiller.Util.Data_Structures
             //Attach name
             this.name = name;
 
-            saveFile = new FileStream((saveDir.FullName + name + ".blm"), FileMode.OpenOrCreate, FileAccess.ReadWrite,
+            saveDir =  Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "\\.filters\\");
+
+            try
+            {
+                saveFile = new FileStream((saveDir.FullName + name + ".blm"), FileMode.Open, FileAccess.ReadWrite,
                     FileShare.ReadWrite);
+            }
+            catch (Exception notFound)
+            {
+                //File deosnt exist.
+                saveFile = new FileStream((saveDir.FullName + name + ".blm"), FileMode.Create, FileAccess.ReadWrite,
+                    FileShare.ReadWrite);
+
+                try
+                {
+
+                }
+                catch (Exception criticalFail)
+                {
+                    //Last resort.
+                    saveFile = new FileStream(
+                        (saveDir.FullName + name +"_failsafe"+new Random().Next(100000)+ ".blm"),
+                        FileMode.Create, FileAccess.ReadWrite,FileShare.ReadWrite);
+                }
+            }
+
+           
 
             if (saveFile.Length > 10)
             {
@@ -146,6 +171,12 @@ namespace TableFiller.Util.Data_Structures
         /// </summary>
         public void Save()
         {
+            if (!doAutoSave)
+            {
+                return;
+            }
+
+
             //Create save object
             Save save = new Save();
             save.Data = bitArray;
@@ -170,8 +201,13 @@ namespace TableFiller.Util.Data_Structures
         /// </summary>
         public void Close()
         {
+            if (!doAutoSave)
+                return;
             Save();
+            saveFile.Flush();
+            
             saveFile.Close();
+            
         }
 
     }

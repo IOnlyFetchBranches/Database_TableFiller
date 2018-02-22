@@ -1,29 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.125, 8.5" name="WallyWorld">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12, 8.5" name="WallyWorld">
   <DataContextMoniker Name="/WallyWorldDataContext" />
   <nestedChildShapes>
     <classShape Id="04e6cd00-7aea-4e1d-9b8e-aaff0f966777" absoluteBounds="1, 0.875, 2, 1.7708968098958331">
       <DataClassMoniker Name="/WallyWorldDataContext/Department" />
       <nestedChildShapes>
         <elementListCompartment Id="25f1934c-f076-4fd2-b203-7729efce00d5" absoluteBounds="1.0150000000000001, 1.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="0d97f04f-ad87-4fc3-9607-733235c3a66f" absoluteBounds="6.75, 0.5, 2, 3.5016097005208326">
-      <DataClassMoniker Name="/WallyWorldDataContext/EmployeeContact" />
-      <nestedChildShapes>
-        <elementListCompartment Id="108b1b4a-62ec-4d9c-8727-b45a18b26147" absoluteBounds="6.765, 0.96, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="4792463e-c497-4ea0-b333-805a35221cc3" absoluteBounds="9.875, 4, 2, 1.3862939453125">
-      <DataClassMoniker Name="/WallyWorldDataContext/EmployeeDirectDepositInfo" />
-      <nestedChildShapes>
-        <elementListCompartment Id="226a972b-2f26-4f75-8dd3-09234f2a7cb5" absoluteBounds="9.89, 4.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="296d7452-1864-4be9-a976-c9fba8e4580b" absoluteBounds="9.75, 0.625, 2, 2.5401025390625">
-      <DataClassMoniker Name="/WallyWorldDataContext/EmployeeWage" />
-      <nestedChildShapes>
-        <elementListCompartment Id="c8075f5f-4e0d-4f54-bb79-9f91e196970f" absoluteBounds="9.765, 1.085, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="1d3772d9-06c0-458e-8a22-e708a6559062" absoluteBounds="1.5, 5.375, 2, 1.3862939453125">
@@ -45,7 +27,7 @@
         <classShapeMoniker Id="04e6cd00-7aea-4e1d-9b8e-aaff0f966777" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.28125 : 5.375); (3.28125 : 3.1194482421875); (3.75 : 3.1194482421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.28125 : 5.375); (3.28125 : 3.1194482421875); (3.75 : 3.1194482421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/WallyWorldDataContext/Region/Region_StoreInfo" />
       <nodes>
         <classShapeMoniker Id="1d3772d9-06c0-458e-8a22-e708a6559062" />
@@ -58,25 +40,64 @@
         <elementListCompartment Id="76f8bcbb-bff4-4db2-ad83-40a643468ca2" absoluteBounds="5.89, 5.71, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.875 : 7.3069482421875); (1.21875 : 7.3069482421875); (1.21875 : 2.64589680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.53125 : 5.25); (6.53125 : 0.90625); (3 : 0.90625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/WallyWorldDataContext/Employee/Employee_Department" />
       <nodes>
         <classShapeMoniker Id="14ff9fde-8f59-49c5-8fd2-7ff63e066f3a" />
         <classShapeMoniker Id="04e6cd00-7aea-4e1d-9b8e-aaff0f966777" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.875 : 6.24722162109375); (4.75 : 6.24722162109375); (4.75 : 3.53049967447917)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.875 : 6.24722162109375); (4.75 : 6.24722162109375); (4.75 : 3.53049967447917)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/WallyWorldDataContext/Employee/Employee_StoreInfo" />
       <nodes>
         <classShapeMoniker Id="14ff9fde-8f59-49c5-8fd2-7ff63e066f3a" />
         <classShapeMoniker Id="f170e8b7-e275-43b6-b347-1a1e7434009f" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.3593775 : 2.64589680989583); (1.3593775 : 7.03411859375); (5.875 : 7.03411859375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.21875 : 2.64589680989583); (1.21875 : 7.3069482421875); (5.875 : 7.3069482421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/WallyWorldDataContext/Department/Department_Employee" />
       <nodes>
         <classShapeMoniker Id="04e6cd00-7aea-4e1d-9b8e-aaff0f966777" />
         <classShapeMoniker Id="14ff9fde-8f59-49c5-8fd2-7ff63e066f3a" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="5c62e160-8b01-415e-a88a-96ed7c540a4c" absoluteBounds="9.375, 5.125, 2, 1.3862939453125">
+      <DataClassMoniker Name="/WallyWorldDataContext/EmployeeDirectDepositInfo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d3b3282e-e468-4d6c-a236-f34594f0987b" absoluteBounds="9.39, 5.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.875 : 6.10020182291667); (9.375 : 6.10020182291667)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/WallyWorldDataContext/Employee/Employee_EmployeeDirectDepositInfo" />
+      <nodes>
+        <classShapeMoniker Id="14ff9fde-8f59-49c5-8fd2-7ff63e066f3a" />
+        <classShapeMoniker Id="5c62e160-8b01-415e-a88a-96ed7c540a4c" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="b20e3e29-407b-4e51-b3ba-ebf5afeb4fd8" absoluteBounds="7.25, 1, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/WallyWorldDataContext/EmployeeContact" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5d190a90-890c-4bd8-937f-ccd3fe8a3e01" absoluteBounds="7.265, 1.46, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.5625 : 5.25); (7.5625 : 4.50160970052083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/WallyWorldDataContext/Employee/Employee_EmployeeContact" />
+      <nodes>
+        <classShapeMoniker Id="14ff9fde-8f59-49c5-8fd2-7ff63e066f3a" />
+        <classShapeMoniker Id="b20e3e29-407b-4e51-b3ba-ebf5afeb4fd8" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="91764beb-8311-44a7-a4c1-ee7ed4721e50" absoluteBounds="9.625, 1.375, 2, 2.5401025390625">
+      <DataClassMoniker Name="/WallyWorldDataContext/EmployeeWage" />
+      <nestedChildShapes>
+        <elementListCompartment Id="01728e01-763c-4d7c-b39b-1450399c5309" absoluteBounds="9.64, 1.835, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.875 : 7.1819482421875); (11.53125 : 7.1819482421875); (11.53125 : 3.9151025390625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/WallyWorldDataContext/Employee/Employee_EmployeeWage" />
+      <nodes>
+        <classShapeMoniker Id="14ff9fde-8f59-49c5-8fd2-7ff63e066f3a" />
+        <classShapeMoniker Id="91764beb-8311-44a7-a4c1-ee7ed4721e50" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

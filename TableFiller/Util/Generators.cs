@@ -27,9 +27,9 @@ namespace TableFiller.Util
            
 
 
-
-            //Store a map of all used names
-            private static Dictionary<string, string> _usedNames = new Dictionary<string, string>();
+            //I've considered merging them all to one filter, however I wanted to test my persistance names methods...
+            //Use bloom Filter of all used names
+            private static BloomFilter filter = new BloomFilter("usedNames");
 
             private static List<string> _firstNames = new List<string>()
             {
@@ -72,7 +72,7 @@ namespace TableFiller.Util
                     //Generate last Name
                     lName = _lastNames[random.Next(0, _lastNames.Count)];
                     //Enforce Uniqueness.
-                    isUnique = !_usedNames.ContainsKey(fName + lName);
+                    isUnique = !filter.CheckFor(fName + lName);
                     if(!isUnique)
                         dupCounter++;
                     if (dupCounter >= (CALC_CONSTANT^2))
@@ -84,12 +84,17 @@ namespace TableFiller.Util
                 } while (!isUnique);
 
                 //Add to used names
-                _usedNames.Add(fName+lName,"");
+                filter.AddItem(fName+lName);
                 //Return new Name Object => See class for more info...
                 return new Name(fName,lName);
 
                     
 
+            }
+
+            public static void CloseFilter()
+            {
+                filter.Close();
             }
         }
 
@@ -103,11 +108,7 @@ namespace TableFiller.Util
 
             private static BloomFilter usedAddr;
 
-            static AddressGen()
-            {
-                usedAddr = new BloomFilter("Addresses");
-                Logger.LogG("Created Filter.");
-            }
+        
 
 
             private static List<string> RoadNames = new List<string>()
@@ -154,6 +155,12 @@ namespace TableFiller.Util
 
             public static Address GenAddress()
             {
+
+                if (usedAddr == null)
+                {
+                    usedAddr = new BloomFilter("Addresses");
+                    Logger.LogG("Created Filter.");
+                }
                 var street = RoadNames[random.Next(RoadNames.Count)] + " " + Prefixes[random.Next(Prefixes.Count)];
                 var address = new Address(street,GenRegion());
 
@@ -164,6 +171,11 @@ namespace TableFiller.Util
                 }
                 else
                     return address;
+            }
+
+            public static void CloseFilter()
+            {
+                usedAddr.Close();
             }
         }
 
@@ -238,6 +250,12 @@ namespace TableFiller.Util
 
                 return id.Replace("/", "c").Replace("=", "b").Replace("+", "A").Replace("\\", "C");
 
+            }
+
+            public static void CloseFilter()
+            {
+                filter.Close();
+                
             }
         }
     }

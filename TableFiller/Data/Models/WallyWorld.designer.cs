@@ -33,15 +33,6 @@ namespace TableFiller.Data.Models
     partial void InsertDepartment(Department instance);
     partial void UpdateDepartment(Department instance);
     partial void DeleteDepartment(Department instance);
-    partial void InsertEmployeeContact(EmployeeContact instance);
-    partial void UpdateEmployeeContact(EmployeeContact instance);
-    partial void DeleteEmployeeContact(EmployeeContact instance);
-    partial void InsertEmployeeDirectDepositInfo(EmployeeDirectDepositInfo instance);
-    partial void UpdateEmployeeDirectDepositInfo(EmployeeDirectDepositInfo instance);
-    partial void DeleteEmployeeDirectDepositInfo(EmployeeDirectDepositInfo instance);
-    partial void InsertEmployeeWage(EmployeeWage instance);
-    partial void UpdateEmployeeWage(EmployeeWage instance);
-    partial void DeleteEmployeeWage(EmployeeWage instance);
     partial void InsertRegion(Region instance);
     partial void UpdateRegion(Region instance);
     partial void DeleteRegion(Region instance);
@@ -51,6 +42,15 @@ namespace TableFiller.Data.Models
     partial void InsertEmployee(Employee instance);
     partial void UpdateEmployee(Employee instance);
     partial void DeleteEmployee(Employee instance);
+    partial void InsertEmployeeDirectDepositInfo(EmployeeDirectDepositInfo instance);
+    partial void UpdateEmployeeDirectDepositInfo(EmployeeDirectDepositInfo instance);
+    partial void DeleteEmployeeDirectDepositInfo(EmployeeDirectDepositInfo instance);
+    partial void InsertEmployeeContact(EmployeeContact instance);
+    partial void UpdateEmployeeContact(EmployeeContact instance);
+    partial void DeleteEmployeeContact(EmployeeContact instance);
+    partial void InsertEmployeeWage(EmployeeWage instance);
+    partial void UpdateEmployeeWage(EmployeeWage instance);
+    partial void DeleteEmployeeWage(EmployeeWage instance);
     #endregion
 		
 		public WallyWorldDataContext() : 
@@ -91,30 +91,6 @@ namespace TableFiller.Data.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<EmployeeContact> EmployeeContacts
-		{
-			get
-			{
-				return this.GetTable<EmployeeContact>();
-			}
-		}
-		
-		public System.Data.Linq.Table<EmployeeDirectDepositInfo> EmployeeDirectDepositInfos
-		{
-			get
-			{
-				return this.GetTable<EmployeeDirectDepositInfo>();
-			}
-		}
-		
-		public System.Data.Linq.Table<EmployeeWage> EmployeeWages
-		{
-			get
-			{
-				return this.GetTable<EmployeeWage>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Region> Regions
 		{
 			get
@@ -136,6 +112,30 @@ namespace TableFiller.Data.Models
 			get
 			{
 				return this.GetTable<Employee>();
+			}
+		}
+		
+		public System.Data.Linq.Table<EmployeeDirectDepositInfo> EmployeeDirectDepositInfos
+		{
+			get
+			{
+				return this.GetTable<EmployeeDirectDepositInfo>();
+			}
+		}
+		
+		public System.Data.Linq.Table<EmployeeContact> EmployeeContacts
+		{
+			get
+			{
+				return this.GetTable<EmployeeContact>();
+			}
+		}
+		
+		public System.Data.Linq.Table<EmployeeWage> EmployeeWages
+		{
+			get
+			{
+				return this.GetTable<EmployeeWage>();
 			}
 		}
 	}
@@ -405,744 +405,6 @@ namespace TableFiller.Data.Models
 		{
 			this.SendPropertyChanging();
 			entity.Department = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.EmployeeContacts")]
-	public partial class EmployeeContact : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _Street;
-		
-		private string _City;
-		
-		private string _State;
-		
-		private System.Nullable<int> _Apt_;
-		
-		private System.Nullable<int> _Zip;
-		
-		private System.Nullable<long> _CellPhoneNumber;
-		
-		private System.Nullable<long> _HomePhoneNumber;
-		
-		private string _PrimaryEmail;
-		
-		private string _SecondaryEmail;
-		
-		private System.Nullable<long> _EmergencyPhoneNumber;
-		
-		private string _EmergencyFirstName;
-		
-		private string _EmergencyLastName;
-		
-		private string _EmergencyEmail;
-		
-		private string _EID;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnStreetChanging(string value);
-    partial void OnStreetChanged();
-    partial void OnCityChanging(string value);
-    partial void OnCityChanged();
-    partial void OnStateChanging(string value);
-    partial void OnStateChanged();
-    partial void OnApt_Changing(System.Nullable<int> value);
-    partial void OnApt_Changed();
-    partial void OnZipChanging(System.Nullable<int> value);
-    partial void OnZipChanged();
-    partial void OnCellPhoneNumberChanging(System.Nullable<long> value);
-    partial void OnCellPhoneNumberChanged();
-    partial void OnHomePhoneNumberChanging(System.Nullable<long> value);
-    partial void OnHomePhoneNumberChanged();
-    partial void OnPrimaryEmailChanging(string value);
-    partial void OnPrimaryEmailChanged();
-    partial void OnSecondaryEmailChanging(string value);
-    partial void OnSecondaryEmailChanged();
-    partial void OnEmergencyPhoneNumberChanging(System.Nullable<long> value);
-    partial void OnEmergencyPhoneNumberChanged();
-    partial void OnEmergencyFirstNameChanging(string value);
-    partial void OnEmergencyFirstNameChanged();
-    partial void OnEmergencyLastNameChanging(string value);
-    partial void OnEmergencyLastNameChanged();
-    partial void OnEmergencyEmailChanging(string value);
-    partial void OnEmergencyEmailChanged();
-    partial void OnEIDChanging(string value);
-    partial void OnEIDChanged();
-    #endregion
-		
-		public EmployeeContact()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Street", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string Street
-		{
-			get
-			{
-				return this._Street;
-			}
-			set
-			{
-				if ((this._Street != value))
-				{
-					this.OnStreetChanging(value);
-					this.SendPropertyChanging();
-					this._Street = value;
-					this.SendPropertyChanged("Street");
-					this.OnStreetChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_City", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string City
-		{
-			get
-			{
-				return this._City;
-			}
-			set
-			{
-				if ((this._City != value))
-				{
-					this.OnCityChanging(value);
-					this.SendPropertyChanging();
-					this._City = value;
-					this.SendPropertyChanged("City");
-					this.OnCityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_State", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string State
-		{
-			get
-			{
-				return this._State;
-			}
-			set
-			{
-				if ((this._State != value))
-				{
-					this.OnStateChanging(value);
-					this.SendPropertyChanging();
-					this._State = value;
-					this.SendPropertyChanged("State");
-					this.OnStateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Apt#", Storage="_Apt_", DbType="Int")]
-		public System.Nullable<int> Apt_
-		{
-			get
-			{
-				return this._Apt_;
-			}
-			set
-			{
-				if ((this._Apt_ != value))
-				{
-					this.OnApt_Changing(value);
-					this.SendPropertyChanging();
-					this._Apt_ = value;
-					this.SendPropertyChanged("Apt_");
-					this.OnApt_Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Zip", DbType="Int")]
-		public System.Nullable<int> Zip
-		{
-			get
-			{
-				return this._Zip;
-			}
-			set
-			{
-				if ((this._Zip != value))
-				{
-					this.OnZipChanging(value);
-					this.SendPropertyChanging();
-					this._Zip = value;
-					this.SendPropertyChanged("Zip");
-					this.OnZipChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CellPhoneNumber", DbType="BigInt")]
-		public System.Nullable<long> CellPhoneNumber
-		{
-			get
-			{
-				return this._CellPhoneNumber;
-			}
-			set
-			{
-				if ((this._CellPhoneNumber != value))
-				{
-					this.OnCellPhoneNumberChanging(value);
-					this.SendPropertyChanging();
-					this._CellPhoneNumber = value;
-					this.SendPropertyChanged("CellPhoneNumber");
-					this.OnCellPhoneNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HomePhoneNumber", DbType="BigInt")]
-		public System.Nullable<long> HomePhoneNumber
-		{
-			get
-			{
-				return this._HomePhoneNumber;
-			}
-			set
-			{
-				if ((this._HomePhoneNumber != value))
-				{
-					this.OnHomePhoneNumberChanging(value);
-					this.SendPropertyChanging();
-					this._HomePhoneNumber = value;
-					this.SendPropertyChanged("HomePhoneNumber");
-					this.OnHomePhoneNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimaryEmail", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string PrimaryEmail
-		{
-			get
-			{
-				return this._PrimaryEmail;
-			}
-			set
-			{
-				if ((this._PrimaryEmail != value))
-				{
-					this.OnPrimaryEmailChanging(value);
-					this.SendPropertyChanging();
-					this._PrimaryEmail = value;
-					this.SendPropertyChanged("PrimaryEmail");
-					this.OnPrimaryEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecondaryEmail", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string SecondaryEmail
-		{
-			get
-			{
-				return this._SecondaryEmail;
-			}
-			set
-			{
-				if ((this._SecondaryEmail != value))
-				{
-					this.OnSecondaryEmailChanging(value);
-					this.SendPropertyChanging();
-					this._SecondaryEmail = value;
-					this.SendPropertyChanged("SecondaryEmail");
-					this.OnSecondaryEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmergencyPhoneNumber", DbType="BigInt")]
-		public System.Nullable<long> EmergencyPhoneNumber
-		{
-			get
-			{
-				return this._EmergencyPhoneNumber;
-			}
-			set
-			{
-				if ((this._EmergencyPhoneNumber != value))
-				{
-					this.OnEmergencyPhoneNumberChanging(value);
-					this.SendPropertyChanging();
-					this._EmergencyPhoneNumber = value;
-					this.SendPropertyChanged("EmergencyPhoneNumber");
-					this.OnEmergencyPhoneNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmergencyFirstName", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string EmergencyFirstName
-		{
-			get
-			{
-				return this._EmergencyFirstName;
-			}
-			set
-			{
-				if ((this._EmergencyFirstName != value))
-				{
-					this.OnEmergencyFirstNameChanging(value);
-					this.SendPropertyChanging();
-					this._EmergencyFirstName = value;
-					this.SendPropertyChanged("EmergencyFirstName");
-					this.OnEmergencyFirstNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmergencyLastName", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string EmergencyLastName
-		{
-			get
-			{
-				return this._EmergencyLastName;
-			}
-			set
-			{
-				if ((this._EmergencyLastName != value))
-				{
-					this.OnEmergencyLastNameChanging(value);
-					this.SendPropertyChanging();
-					this._EmergencyLastName = value;
-					this.SendPropertyChanged("EmergencyLastName");
-					this.OnEmergencyLastNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmergencyEmail", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string EmergencyEmail
-		{
-			get
-			{
-				return this._EmergencyEmail;
-			}
-			set
-			{
-				if ((this._EmergencyEmail != value))
-				{
-					this.OnEmergencyEmailChanging(value);
-					this.SendPropertyChanging();
-					this._EmergencyEmail = value;
-					this.SendPropertyChanged("EmergencyEmail");
-					this.OnEmergencyEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EID", DbType="VarChar(150) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string EID
-		{
-			get
-			{
-				return this._EID;
-			}
-			set
-			{
-				if ((this._EID != value))
-				{
-					this.OnEIDChanging(value);
-					this.SendPropertyChanging();
-					this._EID = value;
-					this.SendPropertyChanged("EID");
-					this.OnEIDChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.EmployeeDirectDepositInfo")]
-	public partial class EmployeeDirectDepositInfo : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _EID;
-		
-		private string _AccountNumber;
-		
-		private string _RoutingNumber;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnEIDChanging(string value);
-    partial void OnEIDChanged();
-    partial void OnAccountNumberChanging(string value);
-    partial void OnAccountNumberChanged();
-    partial void OnRoutingNumberChanging(string value);
-    partial void OnRoutingNumberChanged();
-    #endregion
-		
-		public EmployeeDirectDepositInfo()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EID", DbType="VarChar(150) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string EID
-		{
-			get
-			{
-				return this._EID;
-			}
-			set
-			{
-				if ((this._EID != value))
-				{
-					this.OnEIDChanging(value);
-					this.SendPropertyChanging();
-					this._EID = value;
-					this.SendPropertyChanged("EID");
-					this.OnEIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountNumber", DbType="VarChar(150)")]
-		public string AccountNumber
-		{
-			get
-			{
-				return this._AccountNumber;
-			}
-			set
-			{
-				if ((this._AccountNumber != value))
-				{
-					this.OnAccountNumberChanging(value);
-					this.SendPropertyChanging();
-					this._AccountNumber = value;
-					this.SendPropertyChanged("AccountNumber");
-					this.OnAccountNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoutingNumber", DbType="VarChar(150)")]
-		public string RoutingNumber
-		{
-			get
-			{
-				return this._RoutingNumber;
-			}
-			set
-			{
-				if ((this._RoutingNumber != value))
-				{
-					this.OnRoutingNumberChanging(value);
-					this.SendPropertyChanging();
-					this._RoutingNumber = value;
-					this.SendPropertyChanged("RoutingNumber");
-					this.OnRoutingNumberChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.EmployeeWages")]
-	public partial class EmployeeWage : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _EID;
-		
-		private System.Nullable<bool> _HasDirectDeposit;
-		
-		private System.Nullable<decimal> _Wage;
-		
-		private System.Nullable<int> _HoursWorked;
-		
-		private System.Nullable<decimal> _ExpectedSalary;
-		
-		private System.Nullable<decimal> _CurrentSalary;
-		
-		private System.Nullable<decimal> _StateTaxesPaid;
-		
-		private System.Nullable<decimal> _FederalTaxesPaid;
-		
-		private System.Nullable<decimal> _Bonuses;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnEIDChanging(string value);
-    partial void OnEIDChanged();
-    partial void OnHasDirectDepositChanging(System.Nullable<bool> value);
-    partial void OnHasDirectDepositChanged();
-    partial void OnWageChanging(System.Nullable<decimal> value);
-    partial void OnWageChanged();
-    partial void OnHoursWorkedChanging(System.Nullable<int> value);
-    partial void OnHoursWorkedChanged();
-    partial void OnExpectedSalaryChanging(System.Nullable<decimal> value);
-    partial void OnExpectedSalaryChanged();
-    partial void OnCurrentSalaryChanging(System.Nullable<decimal> value);
-    partial void OnCurrentSalaryChanged();
-    partial void OnStateTaxesPaidChanging(System.Nullable<decimal> value);
-    partial void OnStateTaxesPaidChanged();
-    partial void OnFederalTaxesPaidChanging(System.Nullable<decimal> value);
-    partial void OnFederalTaxesPaidChanged();
-    partial void OnBonusesChanging(System.Nullable<decimal> value);
-    partial void OnBonusesChanged();
-    #endregion
-		
-		public EmployeeWage()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EID", DbType="VarChar(150) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string EID
-		{
-			get
-			{
-				return this._EID;
-			}
-			set
-			{
-				if ((this._EID != value))
-				{
-					this.OnEIDChanging(value);
-					this.SendPropertyChanging();
-					this._EID = value;
-					this.SendPropertyChanged("EID");
-					this.OnEIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HasDirectDeposit", DbType="Bit")]
-		public System.Nullable<bool> HasDirectDeposit
-		{
-			get
-			{
-				return this._HasDirectDeposit;
-			}
-			set
-			{
-				if ((this._HasDirectDeposit != value))
-				{
-					this.OnHasDirectDepositChanging(value);
-					this.SendPropertyChanging();
-					this._HasDirectDeposit = value;
-					this.SendPropertyChanged("HasDirectDeposit");
-					this.OnHasDirectDepositChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Wage", DbType="Decimal(2,2)")]
-		public System.Nullable<decimal> Wage
-		{
-			get
-			{
-				return this._Wage;
-			}
-			set
-			{
-				if ((this._Wage != value))
-				{
-					this.OnWageChanging(value);
-					this.SendPropertyChanging();
-					this._Wage = value;
-					this.SendPropertyChanged("Wage");
-					this.OnWageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoursWorked", DbType="Int")]
-		public System.Nullable<int> HoursWorked
-		{
-			get
-			{
-				return this._HoursWorked;
-			}
-			set
-			{
-				if ((this._HoursWorked != value))
-				{
-					this.OnHoursWorkedChanging(value);
-					this.SendPropertyChanging();
-					this._HoursWorked = value;
-					this.SendPropertyChanged("HoursWorked");
-					this.OnHoursWorkedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpectedSalary", DbType="Decimal(6,2)")]
-		public System.Nullable<decimal> ExpectedSalary
-		{
-			get
-			{
-				return this._ExpectedSalary;
-			}
-			set
-			{
-				if ((this._ExpectedSalary != value))
-				{
-					this.OnExpectedSalaryChanging(value);
-					this.SendPropertyChanging();
-					this._ExpectedSalary = value;
-					this.SendPropertyChanged("ExpectedSalary");
-					this.OnExpectedSalaryChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentSalary", DbType="Decimal(6,2)")]
-		public System.Nullable<decimal> CurrentSalary
-		{
-			get
-			{
-				return this._CurrentSalary;
-			}
-			set
-			{
-				if ((this._CurrentSalary != value))
-				{
-					this.OnCurrentSalaryChanging(value);
-					this.SendPropertyChanging();
-					this._CurrentSalary = value;
-					this.SendPropertyChanged("CurrentSalary");
-					this.OnCurrentSalaryChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StateTaxesPaid", DbType="Decimal(6,2)")]
-		public System.Nullable<decimal> StateTaxesPaid
-		{
-			get
-			{
-				return this._StateTaxesPaid;
-			}
-			set
-			{
-				if ((this._StateTaxesPaid != value))
-				{
-					this.OnStateTaxesPaidChanging(value);
-					this.SendPropertyChanging();
-					this._StateTaxesPaid = value;
-					this.SendPropertyChanged("StateTaxesPaid");
-					this.OnStateTaxesPaidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FederalTaxesPaid", DbType="Decimal(6,2)")]
-		public System.Nullable<decimal> FederalTaxesPaid
-		{
-			get
-			{
-				return this._FederalTaxesPaid;
-			}
-			set
-			{
-				if ((this._FederalTaxesPaid != value))
-				{
-					this.OnFederalTaxesPaidChanging(value);
-					this.SendPropertyChanging();
-					this._FederalTaxesPaid = value;
-					this.SendPropertyChanged("FederalTaxesPaid");
-					this.OnFederalTaxesPaidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Bonuses", DbType="Decimal(6,2)")]
-		public System.Nullable<decimal> Bonuses
-		{
-			get
-			{
-				return this._Bonuses;
-			}
-			set
-			{
-				if ((this._Bonuses != value))
-				{
-					this.OnBonusesChanging(value);
-					this.SendPropertyChanging();
-					this._Bonuses = value;
-					this.SendPropertyChanged("Bonuses");
-					this.OnBonusesChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	
@@ -1628,6 +890,12 @@ namespace TableFiller.Data.Models
 		
 		private EntitySet<StoreInfo> _StoreInfos;
 		
+		private EntityRef<EmployeeDirectDepositInfo> _EmployeeDirectDepositInfo;
+		
+		private EntityRef<EmployeeContact> _EmployeeContact;
+		
+		private EntityRef<EmployeeWage> _EmployeeWage;
+		
 		private EntityRef<Department> _Department;
 		
     #region Extensibility Method Definitions
@@ -1658,6 +926,9 @@ namespace TableFiller.Data.Models
 		{
 			this._Departments = new EntitySet<Department>(new Action<Department>(this.attach_Departments), new Action<Department>(this.detach_Departments));
 			this._StoreInfos = new EntitySet<StoreInfo>(new Action<StoreInfo>(this.attach_StoreInfos), new Action<StoreInfo>(this.detach_StoreInfos));
+			this._EmployeeDirectDepositInfo = default(EntityRef<EmployeeDirectDepositInfo>);
+			this._EmployeeContact = default(EntityRef<EmployeeContact>);
+			this._EmployeeWage = default(EntityRef<EmployeeWage>);
 			this._Department = default(EntityRef<Department>);
 			OnCreated();
 		}
@@ -1872,6 +1143,93 @@ namespace TableFiller.Data.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Employee_EmployeeDirectDepositInfo", Storage="_EmployeeDirectDepositInfo", ThisKey="EID", OtherKey="EID", IsUnique=true, IsForeignKey=false)]
+		public EmployeeDirectDepositInfo EmployeeDirectDepositInfo
+		{
+			get
+			{
+				return this._EmployeeDirectDepositInfo.Entity;
+			}
+			set
+			{
+				EmployeeDirectDepositInfo previousValue = this._EmployeeDirectDepositInfo.Entity;
+				if (((previousValue != value) 
+							|| (this._EmployeeDirectDepositInfo.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._EmployeeDirectDepositInfo.Entity = null;
+						previousValue.Employee = null;
+					}
+					this._EmployeeDirectDepositInfo.Entity = value;
+					if ((value != null))
+					{
+						value.Employee = this;
+					}
+					this.SendPropertyChanged("EmployeeDirectDepositInfo");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Employee_EmployeeContact", Storage="_EmployeeContact", ThisKey="EID", OtherKey="EID", IsUnique=true, IsForeignKey=false)]
+		public EmployeeContact EmployeeContact
+		{
+			get
+			{
+				return this._EmployeeContact.Entity;
+			}
+			set
+			{
+				EmployeeContact previousValue = this._EmployeeContact.Entity;
+				if (((previousValue != value) 
+							|| (this._EmployeeContact.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._EmployeeContact.Entity = null;
+						previousValue.Employee = null;
+					}
+					this._EmployeeContact.Entity = value;
+					if ((value != null))
+					{
+						value.Employee = this;
+					}
+					this.SendPropertyChanged("EmployeeContact");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Employee_EmployeeWage", Storage="_EmployeeWage", ThisKey="EID", OtherKey="EID", IsUnique=true, IsForeignKey=false)]
+		public EmployeeWage EmployeeWage
+		{
+			get
+			{
+				return this._EmployeeWage.Entity;
+			}
+			set
+			{
+				EmployeeWage previousValue = this._EmployeeWage.Entity;
+				if (((previousValue != value) 
+							|| (this._EmployeeWage.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._EmployeeWage.Entity = null;
+						previousValue.Employee = null;
+					}
+					this._EmployeeWage.Entity = value;
+					if ((value != null))
+					{
+						value.Employee = this;
+					}
+					this.SendPropertyChanged("EmployeeWage");
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Department_Employee", Storage="_Department", ThisKey="DID", OtherKey="DID", IsForeignKey=true)]
 		public Department Department
 		{
@@ -1948,6 +1306,867 @@ namespace TableFiller.Data.Models
 		{
 			this.SendPropertyChanging();
 			entity.Employee = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.EmployeeDirectDepositInfo")]
+	public partial class EmployeeDirectDepositInfo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _EID;
+		
+		private string _AccountNumber;
+		
+		private string _RoutingNumber;
+		
+		private EntityRef<Employee> _Employee;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnEIDChanging(string value);
+    partial void OnEIDChanged();
+    partial void OnAccountNumberChanging(string value);
+    partial void OnAccountNumberChanged();
+    partial void OnRoutingNumberChanging(string value);
+    partial void OnRoutingNumberChanged();
+    #endregion
+		
+		public EmployeeDirectDepositInfo()
+		{
+			this._Employee = default(EntityRef<Employee>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EID", DbType="VarChar(150) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string EID
+		{
+			get
+			{
+				return this._EID;
+			}
+			set
+			{
+				if ((this._EID != value))
+				{
+					if (this._Employee.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEIDChanging(value);
+					this.SendPropertyChanging();
+					this._EID = value;
+					this.SendPropertyChanged("EID");
+					this.OnEIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountNumber", DbType="VarChar(150)")]
+		public string AccountNumber
+		{
+			get
+			{
+				return this._AccountNumber;
+			}
+			set
+			{
+				if ((this._AccountNumber != value))
+				{
+					this.OnAccountNumberChanging(value);
+					this.SendPropertyChanging();
+					this._AccountNumber = value;
+					this.SendPropertyChanged("AccountNumber");
+					this.OnAccountNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoutingNumber", DbType="VarChar(150)")]
+		public string RoutingNumber
+		{
+			get
+			{
+				return this._RoutingNumber;
+			}
+			set
+			{
+				if ((this._RoutingNumber != value))
+				{
+					this.OnRoutingNumberChanging(value);
+					this.SendPropertyChanging();
+					this._RoutingNumber = value;
+					this.SendPropertyChanged("RoutingNumber");
+					this.OnRoutingNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Employee_EmployeeDirectDepositInfo", Storage="_Employee", ThisKey="EID", OtherKey="EID", IsForeignKey=true)]
+		public Employee Employee
+		{
+			get
+			{
+				return this._Employee.Entity;
+			}
+			set
+			{
+				Employee previousValue = this._Employee.Entity;
+				if (((previousValue != value) 
+							|| (this._Employee.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Employee.Entity = null;
+						previousValue.EmployeeDirectDepositInfo = null;
+					}
+					this._Employee.Entity = value;
+					if ((value != null))
+					{
+						value.EmployeeDirectDepositInfo = this;
+						this._EID = value.EID;
+					}
+					else
+					{
+						this._EID = default(string);
+					}
+					this.SendPropertyChanged("Employee");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.EmployeeContacts")]
+	public partial class EmployeeContact : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Street;
+		
+		private string _City;
+		
+		private string _State;
+		
+		private System.Nullable<int> _Apt_;
+		
+		private System.Nullable<int> _Zip;
+		
+		private System.Nullable<long> _CellPhoneNumber;
+		
+		private System.Nullable<long> _HomePhoneNumber;
+		
+		private string _PrimaryEmail;
+		
+		private string _SecondaryEmail;
+		
+		private System.Nullable<long> _EmergencyPhoneNumber;
+		
+		private string _EmergencyFirstName;
+		
+		private string _EmergencyLastName;
+		
+		private string _EmergencyEmail;
+		
+		private string _EID;
+		
+		private EntityRef<Employee> _Employee;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnStreetChanging(string value);
+    partial void OnStreetChanged();
+    partial void OnCityChanging(string value);
+    partial void OnCityChanged();
+    partial void OnStateChanging(string value);
+    partial void OnStateChanged();
+    partial void OnApt_Changing(System.Nullable<int> value);
+    partial void OnApt_Changed();
+    partial void OnZipChanging(System.Nullable<int> value);
+    partial void OnZipChanged();
+    partial void OnCellPhoneNumberChanging(System.Nullable<long> value);
+    partial void OnCellPhoneNumberChanged();
+    partial void OnHomePhoneNumberChanging(System.Nullable<long> value);
+    partial void OnHomePhoneNumberChanged();
+    partial void OnPrimaryEmailChanging(string value);
+    partial void OnPrimaryEmailChanged();
+    partial void OnSecondaryEmailChanging(string value);
+    partial void OnSecondaryEmailChanged();
+    partial void OnEmergencyPhoneNumberChanging(System.Nullable<long> value);
+    partial void OnEmergencyPhoneNumberChanged();
+    partial void OnEmergencyFirstNameChanging(string value);
+    partial void OnEmergencyFirstNameChanged();
+    partial void OnEmergencyLastNameChanging(string value);
+    partial void OnEmergencyLastNameChanged();
+    partial void OnEmergencyEmailChanging(string value);
+    partial void OnEmergencyEmailChanged();
+    partial void OnEIDChanging(string value);
+    partial void OnEIDChanged();
+    #endregion
+		
+		public EmployeeContact()
+		{
+			this._Employee = default(EntityRef<Employee>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Street", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string Street
+		{
+			get
+			{
+				return this._Street;
+			}
+			set
+			{
+				if ((this._Street != value))
+				{
+					this.OnStreetChanging(value);
+					this.SendPropertyChanging();
+					this._Street = value;
+					this.SendPropertyChanged("Street");
+					this.OnStreetChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_City", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string City
+		{
+			get
+			{
+				return this._City;
+			}
+			set
+			{
+				if ((this._City != value))
+				{
+					this.OnCityChanging(value);
+					this.SendPropertyChanging();
+					this._City = value;
+					this.SendPropertyChanged("City");
+					this.OnCityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_State", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string State
+		{
+			get
+			{
+				return this._State;
+			}
+			set
+			{
+				if ((this._State != value))
+				{
+					this.OnStateChanging(value);
+					this.SendPropertyChanging();
+					this._State = value;
+					this.SendPropertyChanged("State");
+					this.OnStateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Apt#", Storage="_Apt_", DbType="Int")]
+		public System.Nullable<int> Apt_
+		{
+			get
+			{
+				return this._Apt_;
+			}
+			set
+			{
+				if ((this._Apt_ != value))
+				{
+					this.OnApt_Changing(value);
+					this.SendPropertyChanging();
+					this._Apt_ = value;
+					this.SendPropertyChanged("Apt_");
+					this.OnApt_Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Zip", DbType="Int")]
+		public System.Nullable<int> Zip
+		{
+			get
+			{
+				return this._Zip;
+			}
+			set
+			{
+				if ((this._Zip != value))
+				{
+					this.OnZipChanging(value);
+					this.SendPropertyChanging();
+					this._Zip = value;
+					this.SendPropertyChanged("Zip");
+					this.OnZipChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CellPhoneNumber", DbType="BigInt")]
+		public System.Nullable<long> CellPhoneNumber
+		{
+			get
+			{
+				return this._CellPhoneNumber;
+			}
+			set
+			{
+				if ((this._CellPhoneNumber != value))
+				{
+					this.OnCellPhoneNumberChanging(value);
+					this.SendPropertyChanging();
+					this._CellPhoneNumber = value;
+					this.SendPropertyChanged("CellPhoneNumber");
+					this.OnCellPhoneNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HomePhoneNumber", DbType="BigInt")]
+		public System.Nullable<long> HomePhoneNumber
+		{
+			get
+			{
+				return this._HomePhoneNumber;
+			}
+			set
+			{
+				if ((this._HomePhoneNumber != value))
+				{
+					this.OnHomePhoneNumberChanging(value);
+					this.SendPropertyChanging();
+					this._HomePhoneNumber = value;
+					this.SendPropertyChanged("HomePhoneNumber");
+					this.OnHomePhoneNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimaryEmail", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string PrimaryEmail
+		{
+			get
+			{
+				return this._PrimaryEmail;
+			}
+			set
+			{
+				if ((this._PrimaryEmail != value))
+				{
+					this.OnPrimaryEmailChanging(value);
+					this.SendPropertyChanging();
+					this._PrimaryEmail = value;
+					this.SendPropertyChanged("PrimaryEmail");
+					this.OnPrimaryEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecondaryEmail", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string SecondaryEmail
+		{
+			get
+			{
+				return this._SecondaryEmail;
+			}
+			set
+			{
+				if ((this._SecondaryEmail != value))
+				{
+					this.OnSecondaryEmailChanging(value);
+					this.SendPropertyChanging();
+					this._SecondaryEmail = value;
+					this.SendPropertyChanged("SecondaryEmail");
+					this.OnSecondaryEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmergencyPhoneNumber", DbType="BigInt")]
+		public System.Nullable<long> EmergencyPhoneNumber
+		{
+			get
+			{
+				return this._EmergencyPhoneNumber;
+			}
+			set
+			{
+				if ((this._EmergencyPhoneNumber != value))
+				{
+					this.OnEmergencyPhoneNumberChanging(value);
+					this.SendPropertyChanging();
+					this._EmergencyPhoneNumber = value;
+					this.SendPropertyChanged("EmergencyPhoneNumber");
+					this.OnEmergencyPhoneNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmergencyFirstName", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string EmergencyFirstName
+		{
+			get
+			{
+				return this._EmergencyFirstName;
+			}
+			set
+			{
+				if ((this._EmergencyFirstName != value))
+				{
+					this.OnEmergencyFirstNameChanging(value);
+					this.SendPropertyChanging();
+					this._EmergencyFirstName = value;
+					this.SendPropertyChanged("EmergencyFirstName");
+					this.OnEmergencyFirstNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmergencyLastName", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string EmergencyLastName
+		{
+			get
+			{
+				return this._EmergencyLastName;
+			}
+			set
+			{
+				if ((this._EmergencyLastName != value))
+				{
+					this.OnEmergencyLastNameChanging(value);
+					this.SendPropertyChanging();
+					this._EmergencyLastName = value;
+					this.SendPropertyChanged("EmergencyLastName");
+					this.OnEmergencyLastNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmergencyEmail", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string EmergencyEmail
+		{
+			get
+			{
+				return this._EmergencyEmail;
+			}
+			set
+			{
+				if ((this._EmergencyEmail != value))
+				{
+					this.OnEmergencyEmailChanging(value);
+					this.SendPropertyChanging();
+					this._EmergencyEmail = value;
+					this.SendPropertyChanged("EmergencyEmail");
+					this.OnEmergencyEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EID", DbType="VarChar(150) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string EID
+		{
+			get
+			{
+				return this._EID;
+			}
+			set
+			{
+				if ((this._EID != value))
+				{
+					if (this._Employee.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEIDChanging(value);
+					this.SendPropertyChanging();
+					this._EID = value;
+					this.SendPropertyChanged("EID");
+					this.OnEIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Employee_EmployeeContact", Storage="_Employee", ThisKey="EID", OtherKey="EID", IsForeignKey=true)]
+		public Employee Employee
+		{
+			get
+			{
+				return this._Employee.Entity;
+			}
+			set
+			{
+				Employee previousValue = this._Employee.Entity;
+				if (((previousValue != value) 
+							|| (this._Employee.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Employee.Entity = null;
+						previousValue.EmployeeContact = null;
+					}
+					this._Employee.Entity = value;
+					if ((value != null))
+					{
+						value.EmployeeContact = this;
+						this._EID = value.EID;
+					}
+					else
+					{
+						this._EID = default(string);
+					}
+					this.SendPropertyChanged("Employee");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.EmployeeWages")]
+	public partial class EmployeeWage : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _EID;
+		
+		private System.Nullable<bool> _HasDirectDeposit;
+		
+		private System.Nullable<double> _Wage;
+		
+		private System.Nullable<int> _HoursWorked;
+		
+		private System.Nullable<double> _ExpectedSalary;
+		
+		private System.Nullable<double> _CurrentSalary;
+		
+		private System.Nullable<double> _StateTaxesPaid;
+		
+		private System.Nullable<double> _FederalTaxesPaid;
+		
+		private System.Nullable<double> _Bonuses;
+		
+		private EntityRef<Employee> _Employee;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnEIDChanging(string value);
+    partial void OnEIDChanged();
+    partial void OnHasDirectDepositChanging(System.Nullable<bool> value);
+    partial void OnHasDirectDepositChanged();
+    partial void OnWageChanging(System.Nullable<double> value);
+    partial void OnWageChanged();
+    partial void OnHoursWorkedChanging(System.Nullable<int> value);
+    partial void OnHoursWorkedChanged();
+    partial void OnExpectedSalaryChanging(System.Nullable<double> value);
+    partial void OnExpectedSalaryChanged();
+    partial void OnCurrentSalaryChanging(System.Nullable<double> value);
+    partial void OnCurrentSalaryChanged();
+    partial void OnStateTaxesPaidChanging(System.Nullable<double> value);
+    partial void OnStateTaxesPaidChanged();
+    partial void OnFederalTaxesPaidChanging(System.Nullable<double> value);
+    partial void OnFederalTaxesPaidChanged();
+    partial void OnBonusesChanging(System.Nullable<double> value);
+    partial void OnBonusesChanged();
+    #endregion
+		
+		public EmployeeWage()
+		{
+			this._Employee = default(EntityRef<Employee>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EID", DbType="VarChar(150) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string EID
+		{
+			get
+			{
+				return this._EID;
+			}
+			set
+			{
+				if ((this._EID != value))
+				{
+					if (this._Employee.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEIDChanging(value);
+					this.SendPropertyChanging();
+					this._EID = value;
+					this.SendPropertyChanged("EID");
+					this.OnEIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HasDirectDeposit", DbType="Bit")]
+		public System.Nullable<bool> HasDirectDeposit
+		{
+			get
+			{
+				return this._HasDirectDeposit;
+			}
+			set
+			{
+				if ((this._HasDirectDeposit != value))
+				{
+					this.OnHasDirectDepositChanging(value);
+					this.SendPropertyChanging();
+					this._HasDirectDeposit = value;
+					this.SendPropertyChanged("HasDirectDeposit");
+					this.OnHasDirectDepositChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Wage", DbType="Float")]
+		public System.Nullable<double> Wage
+		{
+			get
+			{
+				return this._Wage;
+			}
+			set
+			{
+				if ((this._Wage != value))
+				{
+					this.OnWageChanging(value);
+					this.SendPropertyChanging();
+					this._Wage = value;
+					this.SendPropertyChanged("Wage");
+					this.OnWageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoursWorked", DbType="Int")]
+		public System.Nullable<int> HoursWorked
+		{
+			get
+			{
+				return this._HoursWorked;
+			}
+			set
+			{
+				if ((this._HoursWorked != value))
+				{
+					this.OnHoursWorkedChanging(value);
+					this.SendPropertyChanging();
+					this._HoursWorked = value;
+					this.SendPropertyChanged("HoursWorked");
+					this.OnHoursWorkedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpectedSalary", DbType="Float")]
+		public System.Nullable<double> ExpectedSalary
+		{
+			get
+			{
+				return this._ExpectedSalary;
+			}
+			set
+			{
+				if ((this._ExpectedSalary != value))
+				{
+					this.OnExpectedSalaryChanging(value);
+					this.SendPropertyChanging();
+					this._ExpectedSalary = value;
+					this.SendPropertyChanged("ExpectedSalary");
+					this.OnExpectedSalaryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentSalary", DbType="Float")]
+		public System.Nullable<double> CurrentSalary
+		{
+			get
+			{
+				return this._CurrentSalary;
+			}
+			set
+			{
+				if ((this._CurrentSalary != value))
+				{
+					this.OnCurrentSalaryChanging(value);
+					this.SendPropertyChanging();
+					this._CurrentSalary = value;
+					this.SendPropertyChanged("CurrentSalary");
+					this.OnCurrentSalaryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StateTaxesPaid", DbType="Float")]
+		public System.Nullable<double> StateTaxesPaid
+		{
+			get
+			{
+				return this._StateTaxesPaid;
+			}
+			set
+			{
+				if ((this._StateTaxesPaid != value))
+				{
+					this.OnStateTaxesPaidChanging(value);
+					this.SendPropertyChanging();
+					this._StateTaxesPaid = value;
+					this.SendPropertyChanged("StateTaxesPaid");
+					this.OnStateTaxesPaidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FederalTaxesPaid", DbType="Float")]
+		public System.Nullable<double> FederalTaxesPaid
+		{
+			get
+			{
+				return this._FederalTaxesPaid;
+			}
+			set
+			{
+				if ((this._FederalTaxesPaid != value))
+				{
+					this.OnFederalTaxesPaidChanging(value);
+					this.SendPropertyChanging();
+					this._FederalTaxesPaid = value;
+					this.SendPropertyChanged("FederalTaxesPaid");
+					this.OnFederalTaxesPaidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Bonuses", DbType="Float")]
+		public System.Nullable<double> Bonuses
+		{
+			get
+			{
+				return this._Bonuses;
+			}
+			set
+			{
+				if ((this._Bonuses != value))
+				{
+					this.OnBonusesChanging(value);
+					this.SendPropertyChanging();
+					this._Bonuses = value;
+					this.SendPropertyChanged("Bonuses");
+					this.OnBonusesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Employee_EmployeeWage", Storage="_Employee", ThisKey="EID", OtherKey="EID", IsForeignKey=true)]
+		public Employee Employee
+		{
+			get
+			{
+				return this._Employee.Entity;
+			}
+			set
+			{
+				Employee previousValue = this._Employee.Entity;
+				if (((previousValue != value) 
+							|| (this._Employee.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Employee.Entity = null;
+						previousValue.EmployeeWage = null;
+					}
+					this._Employee.Entity = value;
+					if ((value != null))
+					{
+						value.EmployeeWage = this;
+						this._EID = value.EID;
+					}
+					else
+					{
+						this._EID = default(string);
+					}
+					this.SendPropertyChanged("Employee");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TableFiller.Data.Actors;
 using TableFiller.Data.Models;
 using TableFiller.Util;
+using TableFiller.Util.Data_Structures;
 using static TableFiller.Util.Logger; //Again use static to simplify from Logger.LogG to just LogG
 
 namespace TableFiller
@@ -26,7 +28,12 @@ namespace TableFiller
 
         static void Main(string[] args)
         {
-           LogG("Begin...");
+            LogG("Begin...");
+            LogG("Testing Components...");
+            Generators.AddressGen.GenAddress();
+
+
+
            LogG("Ensuring Stores...");
             
             //Fill Stores if empty
@@ -73,7 +80,7 @@ namespace TableFiller
                 var result = Fillers.StoreInfo.Fill(5);
 
                 if (!result.Equals(new Settings.Return()))
-                    Logger.LogErr("Fillers:StoreInfo", result.Message);
+                    throw new Exception(result.Message);
            
 
 
@@ -107,7 +114,7 @@ namespace TableFiller
              
 
                 //Create default employees
-                var result4 = Fillers.Employees.Fill(50, Settings.Defaults.Store);
+                var result4 = Fillers.Employees.Fill(100, Settings.Defaults.Store);
 
                 if (!result4.Equals(new Settings.Return()))
                     Logger.LogErr("Fillers:StoreInfo", result4.Message);
@@ -118,9 +125,21 @@ namespace TableFiller
                 var result5 = Fillers.Employees.Managers.UpdateFor(defaultStore.STRID);
 
                 if (!result5.Equals(new Settings.Return()))
-                    Logger.LogErr("Fillers:StoreInfo", result5.Message);
-               
+                    throw new Exception(result5.Message);
 
+
+                //Set Wages
+                Fillers.Employees.Wages.Make();
+
+
+                //Set Contacts
+                var result6 = Fillers.Employees.Addresses.Fill();
+
+
+                result6 = Fillers.Employees.Addresses.MakeEmergency();
+
+                if (!result6.Equals(new Settings.Return()))
+                    throw new Exception(result6.Message);
 
 
 
@@ -130,6 +149,11 @@ namespace TableFiller
             //However if you wish you may remove line that assigns it above and sub your own in Settings.Defaults.Store
 
 
+
+            //Close Filter
+            Generators.AddressGen.CloseFilter();
+            Generators.IDGen.CloseFilter();
+            Generators.NameGen.CloseFilter();
 
 
 
@@ -154,7 +178,7 @@ namespace TableFiller
 
             while (true)
             {
-                
+                Thread.Sleep(1500);
             }
             
         }

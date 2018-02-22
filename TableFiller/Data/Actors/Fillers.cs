@@ -252,6 +252,356 @@ namespace TableFiller.Data.Actors
                     return new Settings.Return();
                 }
             }
+
+            public abstract class Wages
+            {
+                public static void Make()
+                {
+
+                    var employees = db.Employees;
+
+
+                    foreach (Employee emp in employees)
+                    {
+                        EmployeeWage temp;
+    
+                        switch (emp.Position)
+                        {
+                            case "Associate":
+
+                                temp = new
+                                    EmployeeWage()
+                                    {
+                                        Bonuses = 1000.75,
+                                        EID = emp.EID,
+                                        HasDirectDeposit = false,
+                                        HoursWorked = new Random().Next(25, 40),
+                                        Wage = 14.50
+                                    };
+                                temp.FederalTaxesPaid =
+                                    (double?)((temp.Wage * ((temp.HoursWorked * 4 * 12)) + 1000.75) * .1);
+                                temp.StateTaxesPaid = (temp.FederalTaxesPaid * (double?).5);
+                                temp.CurrentSalary = (temp.Wage) * ((temp.HoursWorked * 4 * 12)) + 125.75;
+                                temp.ExpectedSalary = temp.CurrentSalary - temp.Bonuses;
+                                db.EmployeeWages.InsertOnSubmit(temp);
+                                break;
+                            case "Loss Prevention":
+
+                                temp = new
+                                    EmployeeWage()
+                                    {
+                                        Bonuses = 1000.75,
+                                        EID = emp.EID,
+                                        HasDirectDeposit = false,
+                                        HoursWorked = new Random().Next(25, 50),
+                                        Wage = 13.50
+                                    };
+                                temp.FederalTaxesPaid =
+                                    (double?)((temp.Wage * ((temp.HoursWorked * 4 * 12)) + 1000.75) * .1);
+                                temp.StateTaxesPaid = (temp.FederalTaxesPaid * (double?).5);
+                                temp.CurrentSalary = (temp.Wage) * ((temp.HoursWorked * 4 * 12)) + 125.75;
+                                temp.ExpectedSalary = temp.CurrentSalary - temp.Bonuses;
+                                db.EmployeeWages.InsertOnSubmit(temp);
+                                break;
+                            case "Cart Collector":
+
+                                 temp = new
+                                    EmployeeWage()
+                                    {
+                                        Bonuses = 125.75,
+                                        EID = emp.EID,
+                                        HasDirectDeposit = false, //false for now
+                                        HoursWorked = new Random().Next(25, 40),
+                                        Wage = 7.25
+                                    };
+
+                                temp.FederalTaxesPaid =
+                                    (double?)((temp.Wage * ((temp.HoursWorked * 4 * 12)) + 1000.75) * .1);
+                                temp.StateTaxesPaid = (temp.FederalTaxesPaid * (double?).5);
+                                temp.CurrentSalary = (temp.Wage) * ((temp.HoursWorked * 4 * 12)) + 125.75;
+                                temp.ExpectedSalary = temp.CurrentSalary - temp.Bonuses;
+                                db.EmployeeWages.InsertOnSubmit(temp);
+                                break;
+                            case "Janitor":
+
+                                temp = new
+                                    EmployeeWage()
+                                    {
+                                        Bonuses = 570.50,
+                                        EID = emp.EID,
+                                        HasDirectDeposit = false, //false for now
+                                        HoursWorked = new Random().Next(25, 40),
+                                        Wage = 10.50
+                                    };
+
+                                temp.FederalTaxesPaid =
+                                    (double?)((temp.Wage * ((temp.HoursWorked * 4 * 12)) + 1000.75) * .1);
+                                temp.StateTaxesPaid = (temp.FederalTaxesPaid * (double?).5);
+                                temp.CurrentSalary = (temp.Wage) * ((temp.HoursWorked * 4 * 12)) + 125.75;
+                                temp.ExpectedSalary = temp.CurrentSalary - temp.Bonuses;
+                                db.EmployeeWages.InsertOnSubmit(temp);
+                                break;
+                            case "Checkout":
+
+                                temp = new
+                                    EmployeeWage()
+                                    {
+                                        Bonuses = 3750.00,
+                                        EID = emp.EID,
+                                        HasDirectDeposit = false, //false for now
+                                        HoursWorked = new Random().Next(35, 50),
+                                        Wage = 15.00
+                                    };
+
+                                temp.FederalTaxesPaid =
+                                    (double?)((temp.Wage * ((temp.HoursWorked * 4 * 12)) + 1000.75) * .1);
+                                temp.StateTaxesPaid = (temp.FederalTaxesPaid * (double?).5);
+                                temp.CurrentSalary = (temp.Wage) * ((temp.HoursWorked * 4 * 12)) + 125.75;
+                                temp.ExpectedSalary = temp.CurrentSalary - temp.Bonuses;
+                                db.EmployeeWages.InsertOnSubmit(temp);
+                                break;
+
+                            case "Stocker":
+
+                                temp = new
+                                    EmployeeWage()
+                                    {
+                                        Bonuses = 100.00,
+                                        EID = emp.EID,
+                                        HasDirectDeposit = false, //false for now
+                                        HoursWorked = new Random().Next(40, 50),
+                                        Wage = 9.00
+                                    };
+                                temp.FederalTaxesPaid =
+                                    (double?)((temp.Wage * ((temp.HoursWorked * 4 * 12)) + 1000.75) * .1);
+                                temp.StateTaxesPaid = (temp.FederalTaxesPaid * (double?).5);
+                                temp.CurrentSalary = (temp.Wage) * ((temp.HoursWorked * 4 * 12)) + 125.75;
+                                temp.ExpectedSalary = temp.CurrentSalary - temp.Bonuses;
+                                db.EmployeeWages.InsertOnSubmit(temp);
+                                break;
+
+                            case "Manager":
+
+                                temp = new
+                                    EmployeeWage()
+                                    {
+                                        Bonuses = 7750.00,
+                                        EID = emp.EID,
+                                        HasDirectDeposit = false, //false for now
+                                        HoursWorked = new Random().Next(35, 50),
+                                        Wage = 18.50
+                                    };
+                                temp.FederalTaxesPaid =
+                                    (double?)((temp.Wage * ((temp.HoursWorked * 4 * 12)) + 1000.75) * .1);
+                                temp.StateTaxesPaid = (temp.FederalTaxesPaid * (double?).5);
+                                temp.CurrentSalary = (temp.Wage) * ((temp.HoursWorked * 4 * 12)) + 125.75;
+                                temp.ExpectedSalary = temp.CurrentSalary - temp.Bonuses;
+                                db.EmployeeWages.InsertOnSubmit(temp);
+                                break;
+
+                            case "Gardener":
+
+                                temp = new
+                                    EmployeeWage()
+                                    {
+                                        Bonuses = 1150.75,
+                                        EID = emp.EID,
+                                        HasDirectDeposit = false, //false for now
+                                        HoursWorked = new Random().Next(25, 30),
+                                        Wage = 15.00
+                                    };
+
+                                temp.FederalTaxesPaid =
+                                    (double?)((temp.Wage * ((temp.HoursWorked * 4 * 12)) + 1000.75) * .1);
+                                temp.StateTaxesPaid = (temp.FederalTaxesPaid * (double?).5);
+                                temp.CurrentSalary = (temp.Wage) * ((temp.HoursWorked * 4 * 12)) + 125.75;
+                                temp.ExpectedSalary = temp.CurrentSalary - temp.Bonuses;
+                                db.EmployeeWages.InsertOnSubmit(temp);
+                                break;
+
+                            case "IT":
+
+                                temp = new
+                                    EmployeeWage()
+                                    {
+                                        Bonuses =  9000,
+                                        EID = emp.EID,
+                                        HasDirectDeposit = false, //false for now
+                                        HoursWorked = new Random().Next(35, 40),
+                                        Wage = 18.50
+                                    };
+
+                                temp.FederalTaxesPaid =
+                                    (double?)((temp.Wage * ((temp.HoursWorked * 4 * 12)) + 1000.75) * .1);
+                                temp.StateTaxesPaid = (temp.FederalTaxesPaid * (double?).5);
+                                temp.CurrentSalary = (temp.Wage) * ((temp.HoursWorked * 4 * 12)) + 125.75;
+                                temp.ExpectedSalary = temp.CurrentSalary - temp.Bonuses;
+                                db.EmployeeWages.InsertOnSubmit(temp);
+                                break;
+
+                            case "Mechanic":
+
+                                temp = new
+                                    EmployeeWage()
+                                    {
+                                        Bonuses = 10000.75,
+                                        EID = emp.EID,
+                                        HasDirectDeposit = false, //false for now
+                                        HoursWorked = new Random().Next(25, 35),
+                                        Wage = 21.00
+                                    };
+
+                                temp.FederalTaxesPaid =
+                                    (double?)((temp.Wage * ((temp.HoursWorked * 4 * 12)) + 1000.75) * .1);
+                                temp.StateTaxesPaid = (temp.FederalTaxesPaid * (double?).5);
+                                temp.CurrentSalary = (temp.Wage) * ((temp.HoursWorked * 4 * 12)) + 125.75;
+                                temp.ExpectedSalary = temp.CurrentSalary - temp.Bonuses;
+                                db.EmployeeWages.InsertOnSubmit(temp);
+                                break;
+
+                            case "Repair Technician":
+
+                                temp = new
+                                    EmployeeWage()
+                                    {
+                                        Bonuses = 11000.75,
+                                        EID = emp.EID,
+                                        HasDirectDeposit = false, //false for now
+                                        HoursWorked = new Random().Next(25, 35),
+                                        Wage = 21.00
+                                    };
+
+                                temp.FederalTaxesPaid =
+                                    (double?) ((temp.Wage * ((temp.HoursWorked * 4 * 12)) + 1000.75) * .1);
+                                temp.StateTaxesPaid = (temp.FederalTaxesPaid * (double?).5);
+                                temp.CurrentSalary = (temp.Wage) * ((temp.HoursWorked * 4 * 12)) + 125.75;
+                                temp.ExpectedSalary = temp.CurrentSalary - temp.Bonuses;
+                                db.EmployeeWages.InsertOnSubmit(temp);
+                                break;
+
+                            default:
+                                throw new Exception("Can't find Position, Add it to filter statements or remove position! " + emp.Position);
+
+
+                        }
+
+
+                    }
+
+
+                    db.SubmitChanges(); //Commit to backend.
+
+                }
+            }
+
+            public abstract class Addresses
+            {
+                public static Settings.Return Fill()
+                {
+                    try
+                    {
+                        var rand = new Random(DateTime.Now.Millisecond * 4);
+                        int[] prefixInts = new int[] {678, 912, 404, 212, 556, 876, 940, 117, 200, 808};
+                        string[] emailSuffixs = new string[]
+                        {
+                            "gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "ymail.com", "aol.net",
+                            "bellsouth.net"
+                        };
+                        foreach (Employee emp in db.Employees)
+                        {
+                            EmployeeContact contact = new EmployeeContact();
+                            //Decide if in apt.
+                            if (rand.Next(0, 100) % 7 == 0)
+                            {
+                                contact.Apt_ = rand.Next(1, 1000);
+                            }
+
+                            //Set the PK
+                            contact.EID = emp.EID;
+
+
+                            //Gen phone numbers here
+                            contact.CellPhoneNumber =
+                                long.Parse(prefixInts[rand.Next(prefixInts.Length)] + "" + rand.Next(100, 999) + "" +
+                                           rand.Next(1000, 9999));
+
+                            //Assign Regional Constants
+                            contact.City = emp.Department.StoreInfo.SCity;
+                            contact.State = emp.Department.StoreInfo.SState;
+                            contact.Zip = emp.Department.StoreInfo.SZip;
+                            //Generate Street
+                            contact.Street = Generators.AddressGen.GenAddress().Street;
+
+                            contact.PrimaryEmail = emp.FirstName.Substring(0, 1) + emp.LastName + "@" +
+                                                   emailSuffixs[rand.Next(emailSuffixs.Length)];
+
+                            if (rand.Next(0, 100) % 3 == 0)
+                                contact.SecondaryEmail = emp.LastName + emp.FirstName + "@" +
+                                                         emailSuffixs[rand.Next(emailSuffixs.Length)];
+                            else
+                            {
+                                contact.SecondaryEmail = null;
+                            }
+
+
+                            db.EmployeeContacts.InsertOnSubmit(contact);
+
+                        }
+
+                        //Transfer
+                        db.Refresh(RefreshMode.KeepChanges);
+                        db.SubmitChanges();
+
+
+                        //Done. Hopefully...
+                        return new Settings.Return();
+                    }
+                    catch (Exception e)
+                    {
+                        return new Settings.Return(e.Message, new Settings.Status(Settings.ReturnResult.Bad));
+                    }
+
+                }
+
+                public static Settings.Return MakeEmergency()
+                {
+                    try
+                    {
+                        //Get list of all contacts
+
+                        var rand = new Random(DateTime.Now.Millisecond * 3);
+                        var contacts = (
+                            from contact
+                                in db.EmployeeContacts
+                            select contact).ToList();
+
+                        foreach (var contact in db.EmployeeContacts)
+                        {
+                            //Get emergency contact by chance
+                            var emergencyContact = contacts[rand.Next(0, contacts.Count)];
+
+                            contact.EmergencyEmail = emergencyContact.PrimaryEmail;
+                            contact.EmergencyFirstName = emergencyContact.Employee.FirstName;
+                            contact.EmergencyLastName = emergencyContact.Employee.LastName;
+                            contact.EmergencyPhoneNumber = emergencyContact.CellPhoneNumber;
+
+    
+
+
+
+                        }
+
+                        //Commit/Transfer
+                        db.SubmitChanges();
+                        return new Settings.Return();
+                    }
+                    catch (Exception e)
+                    {
+                        return new Settings.Return(e.Message, new Settings.Status(Settings.ReturnResult.Bad));
+                    }
+
+                }
+            }
         }
 
         public abstract class Departments
@@ -284,6 +634,7 @@ namespace TableFiller.Data.Actors
 
                     //Always submit last, it's more efficient, although there are exceptions.
                     //An exception to this would be if you need to act on, or with, a modified field among other things...
+                    db.Refresh(RefreshMode.KeepChanges);
                     db.SubmitChanges();
 
                     //Return result
@@ -328,6 +679,7 @@ namespace TableFiller.Data.Actors
                     db.StoreInfos.InsertOnSubmit(info);
 
                     //Submit
+                    db.Refresh(RefreshMode.KeepChanges);
                     db.SubmitChanges();
 
                     //Print 
