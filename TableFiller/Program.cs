@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using TableFiller.Data.Actors;
 using TableFiller.Data.Models;
 using TableFiller.Util;
-using TableFiller.Util.Data_Structures;
 using static TableFiller.Util.Logger; //Again use static to simplify from Logger.LogG to just LogG
 
 namespace TableFiller
@@ -32,9 +27,27 @@ namespace TableFiller
             LogG("Testing Components...");
             Generators.AddressGen.GenAddress();
 
+            //TODO: Move this down
+            /*
+            var result7 = Fillers.Inventory.GenerateCategories();
+            if (!result7.Equals(new Settings.Return()))
+                throw new Exception(result7.Message);
+            
+             var result8 = Fillers.Inventory.GenerateItems();
+            if (!result8.Equals(new Settings.Return()))
+                throw new Exception(result8.Message);
+
+                */
 
 
-           LogG("Ensuring Stores...");
+            //End move
+
+            var result8 = Fillers.Inventory.GenerateInventories();
+            if (!result8.Equals(new Settings.Return()))
+                throw new Exception(result8.Message);
+
+
+            LogG("Ensuring Stores...");
             
             //Fill Stores if empty
 
@@ -140,6 +153,9 @@ namespace TableFiller
 
                 if (!result6.Equals(new Settings.Return()))
                     throw new Exception(result6.Message);
+
+
+            
 
 
 

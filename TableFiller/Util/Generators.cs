@@ -14,6 +14,7 @@ namespace TableFiller.Util
 {
     public abstract class Generators
     {
+        #region Name-Generator
         /// <summary>
         /// Contains Methods for generating various names.
         /// </summary>
@@ -23,9 +24,6 @@ namespace TableFiller.Util
 
                 //Random Num generator
             private static Random random = new Random(DateTime.Now.Millisecond);
-
-           
-
 
             //I've considered merging them all to one filter, however I wanted to test my persistance names methods...
             //Use bloom Filter of all used names
@@ -97,7 +95,8 @@ namespace TableFiller.Util
                 filter.Close();
             }
         }
-
+        #endregion
+        #region Address-Generator
         /// <summary>
         /// Contains Methods for generating various Addresses
         /// </summary>
@@ -178,9 +177,10 @@ namespace TableFiller.Util
                 usedAddr.Close();
             }
         }
-
+        #endregion
+        #region Id-Generator
         /// <summary>
-        /// Containse methods for generating various IDs.
+        /// Contains methods for generating various IDs.
         /// </summary>
         public abstract class IDGen
         {
@@ -200,12 +200,68 @@ namespace TableFiller.Util
                 var id = "Dpt" + (
                              Convert.ToBase64String(
                                  hasher.ComputeHash(
-                                     Encoding.ASCII.GetBytes(deptName + STRID))).Substring(0, 20) +
+                                     Encoding.ASCII.GetBytes(deptName + STRID))).Substring(0, 10) +
                              Convert.ToBase64String(
                                  Encoding.ASCII.GetBytes(deptName))).Substring(0, 10);
                 if (!filter.CheckFor(id))
                     filter.AddItem(id);
                 
+                return id.Replace("/", "c").Replace("=", "b").Replace("+", "A").Replace("\\", "C");
+            }
+            /// <summary>
+            /// Takes in a deptName and STRID, returning the corresponding InvID
+            /// </summary>
+            /// <param name="deptName">The department name.</param>
+            /// <param name="STRID">The Store Id of the Department.</param>
+            /// <returns>Sanitized InvID</returns>
+            public static string InvID(string deptName, string STRID)
+            {
+                var id = "Inv" + (
+                             Convert.ToBase64String(
+                                 hasher.ComputeHash(
+                                     Encoding.ASCII.GetBytes(deptName + STRID + "inv"))).Substring(0, 10) +
+                             Convert.ToBase64String(
+                                 Encoding.ASCII.GetBytes(deptName+STRID.Substring(0,3)))).Substring(0, 10);
+                if (!filter.CheckFor(id))
+                    filter.AddItem(id);
+                //Sanitize the returning string.
+                return id.Replace("/", "c").Replace("=", "b").Replace("+", "A").Replace("\\", "C");
+            }
+
+            /// <summary>
+            /// Generates a category ID for a given category name.
+            /// </summary>
+            /// <param name="catName">The name of the category.</param>
+            /// <returns></returns>
+            public static string CatID(string catName)
+            {
+                var id = "Cat" + (
+                             Convert.ToBase64String(
+                                 hasher.ComputeHash(
+                                     Encoding.ASCII.GetBytes(catName  + "cat"))).Substring(0, 10) +
+                             Convert.ToBase64String(
+                                 Encoding.ASCII.GetBytes(catName))).Substring(0, 10);
+                if (!filter.CheckFor(id))
+                    filter.AddItem(id);
+                //Sanitize the returning string.
+                return id.Replace("/", "c").Replace("=", "b").Replace("+", "A").Replace("\\", "C");
+            }
+            /// <summary>
+            /// Generates an item ID for a given item name.
+            /// </summary>
+            /// <param name="catName">The name of the category.</param>
+            /// <returns></returns>
+            public static string ItemID(string itemName, string catID)
+            {
+                var id = "Item" + (
+                             Convert.ToBase64String(
+                                 hasher.ComputeHash(
+                                     Encoding.ASCII.GetBytes(itemName + catID))).Substring(0, 10) +
+                             Convert.ToBase64String(
+                                 Encoding.ASCII.GetBytes(itemName))).Substring(0, 10);
+                if (!filter.CheckFor(id))
+                    filter.AddItem(id);
+                //Sanitize the returning string.
                 return id.Replace("/", "c").Replace("=", "b").Replace("+", "A").Replace("\\", "C");
             }
             /// <summary>
@@ -258,5 +314,19 @@ namespace TableFiller.Util
                 
             }
         }
+        #endregion
+
+        #region Price-Generator
+
+        public abstract class PriceGen
+        {
+            internal static Random rand = new Random(DateTime.Now.Millisecond);
+            public static string Gen(int maxDollarAmount, int minDollarAmount)
+            {
+                return rand.Next(minDollarAmount, maxDollarAmount) + "." + rand.Next(99);
+            }
+        }
+
+        #endregion
     }
 }

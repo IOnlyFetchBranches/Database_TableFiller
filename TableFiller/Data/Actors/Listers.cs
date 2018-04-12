@@ -29,7 +29,7 @@ namespace TableFiller.Data.Actors
 
                     foreach (var row in db.Departments)
                     {
-                        WriteL(row.DID + " " + row.DPRTName + " " + row.STRID + " " + row.MEID + " " +
+                        WriteL(row.DID + " " + row.DPRTName + " " + row.STRID + " "  +
                                row.DPRTLastRestock);
                     }
 

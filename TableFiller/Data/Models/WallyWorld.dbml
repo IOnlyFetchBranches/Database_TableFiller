@@ -1,58 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WallyWorld" Class="WallyWorldDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-OQ6MOPB\SQLEXPRESS;Initial Catalog=WallyWorld;Integrated Security=True" SettingsObjectName="TableFiller.Properties.Settings" SettingsPropertyName="WallyWorldConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Departments" Member="Departments">
-    <Type Name="Department">
-      <Column Name="DID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="STRID" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="MEID" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="DPRTName" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="DPRTLastRestock" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Association Name="Department_Employee" Member="Employees" ThisKey="DID" OtherKey="DID" Type="Employee" />
-      <Association Name="StoreInfo_Department" Member="StoreInfo" ThisKey="STRID" OtherKey="STRID" Type="StoreInfo" IsForeignKey="true" />
-      <Association Name="Employee_Department" Member="Employee" ThisKey="MEID" OtherKey="EID" Type="Employee" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Regions" Member="Regions">
-    <Type Name="Region">
-      <Column Name="REGID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="rState" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="rCountry" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Association Name="Region_StoreInfo" Member="StoreInfos" ThisKey="REGID" OtherKey="REGID" Type="StoreInfo" />
-    </Type>
-  </Table>
-  <Table Name="dbo.StoreInfo" Member="StoreInfos">
-    <Type Name="StoreInfo">
-      <Column Name="STRID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="REGID" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="MEID" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="SStreet" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="SCity" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="SState" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="SZip" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="StoreInfo_Department" Member="Departments" ThisKey="STRID" OtherKey="STRID" Type="Department" />
-      <Association Name="Region_StoreInfo" Member="Region" ThisKey="REGID" OtherKey="REGID" Type="Region" IsForeignKey="true" />
-      <Association Name="Employee_StoreInfo" Member="Employee" ThisKey="MEID" OtherKey="EID" Type="Employee" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Employees" Member="Employees">
-    <Type Name="Employee">
-      <Column Name="EID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="DID" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="Position" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="FirstName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="LastName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="EnrollmentDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="CurrentStatus" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="OffDaysUsed" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="OffDaysEarned" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Employee_Department" Member="Departments" ThisKey="EID" OtherKey="MEID" Type="Department" />
-      <Association Name="Employee_StoreInfo" Member="StoreInfos" ThisKey="EID" OtherKey="MEID" Type="StoreInfo" />
-      <Association Name="Employee_EmployeeDirectDepositInfo" Member="EmployeeDirectDepositInfo" ThisKey="EID" OtherKey="EID" Type="EmployeeDirectDepositInfo" Cardinality="One" />
-      <Association Name="Employee_EmployeeContact" Member="EmployeeContact" ThisKey="EID" OtherKey="EID" Type="EmployeeContact" Cardinality="One" />
-      <Association Name="Employee_EmployeeWage" Member="EmployeeWage" ThisKey="EID" OtherKey="EID" Type="EmployeeWage" Cardinality="One" />
-      <Association Name="Department_Employee" Member="Department" ThisKey="DID" OtherKey="DID" Type="Department" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.EmployeeDirectDepositInfo" Member="EmployeeDirectDepositInfos">
     <Type Name="EmployeeDirectDepositInfo">
       <Column Name="EID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -92,6 +39,232 @@
       <Column Name="FederalTaxesPaid" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="Bonuses" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Association Name="Employee_EmployeeWage" Member="Employee" ThisKey="EID" OtherKey="EID" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Regions" Member="Regions">
+    <Type Name="Region">
+      <Column Name="REGID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RState" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="RCountry" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="Region_StoreInfo" Member="StoreInfos" ThisKey="REGID" OtherKey="REGID" Type="StoreInfo" />
+      <Association Name="Region_StoreInfo1" Member="StoreInfo1s" ThisKey="REGID" OtherKey="REGID" Type="StoreInfo1" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StoreInfo" Member="StoreInfos">
+    <Type Name="StoreInfo">
+      <Column Name="STRID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="REGID" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="SStreet" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="SCity" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="SState" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="SZip" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="StoreInfo_Department" Member="Departments" ThisKey="STRID" OtherKey="STRID" Type="Department" />
+      <Association Name="StoreInfo_Employee" Member="Employees" ThisKey="STRID" OtherKey="STRID" Type="Employee" />
+      <Association Name="Region_StoreInfo" Member="Region" ThisKey="REGID" OtherKey="REGID" Type="Region" IsForeignKey="true" />
+      <Association Name="Region1_StoreInfo" Member="Region1" ThisKey="REGID" OtherKey="REGID" Type="Region1" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Departments" Member="Departments">
+    <Type Name="Department">
+      <Column Name="DID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="STRID" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="DPRTName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="DPRTLastRestock" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Department_Employee" Member="Employees" ThisKey="DID" OtherKey="DID" Type="Employee" />
+      <Association Name="Department_Inventory" Member="Inventories" ThisKey="DID" OtherKey="DID" Type="Inventory" />
+      <Association Name="Department_Equipment" Member="Equipments" ThisKey="DID" OtherKey="DID" Type="Equipment" />
+      <Association Name="StoreInfo_Department" Member="StoreInfo" ThisKey="STRID" OtherKey="STRID" Type="StoreInfo" IsForeignKey="true" />
+      <Association Name="StoreInfo1_Department" Member="StoreInfo1" ThisKey="STRID" OtherKey="STRID" Type="StoreInfo1" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employees" Member="Employees">
+    <Type Name="Employee">
+      <Column Name="EID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DID" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="STRID" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Position" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CurrentStatus" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="OffDaysUsed" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OffDaysEarned" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EnrollmentDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Employee_EmployeeDirectDepositInfo" Member="EmployeeDirectDepositInfo" ThisKey="EID" OtherKey="EID" Type="EmployeeDirectDepositInfo" Cardinality="One" />
+      <Association Name="Employee_EmployeeContact" Member="EmployeeContact" ThisKey="EID" OtherKey="EID" Type="EmployeeContact" Cardinality="One" />
+      <Association Name="Employee_EmployeeWage" Member="EmployeeWage" ThisKey="EID" OtherKey="EID" Type="EmployeeWage" Cardinality="One" />
+      <Association Name="Employee_Repair" Member="Repairs" ThisKey="EID" OtherKey="EID" Type="Repair" />
+      <Association Name="Department_Employee" Member="Department" ThisKey="DID" OtherKey="DID" Type="Department" IsForeignKey="true" />
+      <Association Name="StoreInfo_Employee" Member="StoreInfo" ThisKey="STRID" OtherKey="STRID" Type="StoreInfo" IsForeignKey="true" />
+      <Association Name="StoreInfo1_Employee" Member="StoreInfo1" ThisKey="STRID" OtherKey="STRID" Type="StoreInfo1" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StorePromotions" Member="StorePromotions">
+    <Type Name="StorePromotion">
+      <Column Name="PromoCode" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CatID" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="Category_StorePromotion" Member="Category" ThisKey="CatID" OtherKey="CatID" Type="Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ShippingAddress" Member="ShippingAddresses">
+    <Type Name="ShippingAddress">
+      <Column Name="ShipID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Street" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="State" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Zip" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="ShippingAddress_Order" Member="Orders" ThisKey="ShipID" OtherKey="ShipID" Type="Order" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StoreCards" Member="StoreCards">
+    <Type Name="StoreCard">
+      <Column Name="CardID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CID" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Points" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="StoreCard_OrderInformation" Member="OrderInformations" ThisKey="CardID" OtherKey="CardID" Type="OrderInformation" />
+      <Association Name="Customer_StoreCard" Member="Customer" ThisKey="CID" OtherKey="CID" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StoreInfo" Member="StoreInfo1s">
+    <Type Name="StoreInfo1">
+      <Column Name="STRID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="REGID" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="SStreet" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="SCity" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="SState" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="SZip" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="StoreInfo1_Department" Member="Departments" ThisKey="STRID" OtherKey="STRID" Type="Department" />
+      <Association Name="StoreInfo1_Employee" Member="Employees" ThisKey="STRID" OtherKey="STRID" Type="Employee" />
+      <Association Name="Region_StoreInfo1" Member="Region" ThisKey="REGID" OtherKey="REGID" Type="Region" IsForeignKey="true" />
+      <Association Name="Region1_StoreInfo1" Member="Region1" ThisKey="REGID" OtherKey="REGID" Type="Region1" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Repairs" Member="Repairs">
+    <Type Name="Repair">
+      <Column Name="QID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EID" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ReqID" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="SubID" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="SubmittedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CompletedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Employee_Repair" Member="Employee" ThisKey="EID" OtherKey="EID" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SecurityLogs" Member="SecurityLogs">
+    <Type Name="SecurityLog">
+      <Column Name="ProbID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="QID" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Equipment_SecurityLog" Member="Equipment" ThisKey="QID" OtherKey="QID" Type="Equipment" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Orders" Member="Orders">
+    <Type Name="Order">
+      <Column Name="OID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ShipID" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="CID" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="PurchaseDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ShipDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DateRecieved" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Order_OrderInformation" Member="OrderInformation" ThisKey="OID" OtherKey="OID" Type="OrderInformation" Cardinality="One" />
+      <Association Name="ShippingAddress_Order" Member="ShippingAddress" ThisKey="ShipID" OtherKey="ShipID" Type="ShippingAddress" IsForeignKey="true" />
+      <Association Name="Customer_Order" Member="Customer" ThisKey="CID" OtherKey="CID" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Regions" Member="Region1s">
+    <Type Name="Region1">
+      <Column Name="REGID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RState" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="RCountry" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="Region1_StoreInfo" Member="StoreInfos" ThisKey="REGID" OtherKey="REGID" Type="StoreInfo" />
+      <Association Name="Region1_StoreInfo1" Member="StoreInfo1s" ThisKey="REGID" OtherKey="REGID" Type="StoreInfo1" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderInformation" Member="OrderInformations">
+    <Type Name="OrderInformation">
+      <Column Name="OID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="ItemID" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="ItemPrice" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsReturned" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Order_OrderInformation" Member="Order" ThisKey="OID" OtherKey="OID" Type="Order" IsForeignKey="true" />
+      <Association Name="StoreCard_OrderInformation" Member="StoreCard" ThisKey="CardID" OtherKey="CardID" Type="StoreCard" IsForeignKey="true" />
+      <Association Name="Item_OrderInformation" Member="Item" ThisKey="ItemID" OtherKey="ItemId" Type="Item" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MaintainenceLogs" Member="MaintainenceLogs">
+    <Type Name="MaintainenceLog">
+      <Column Name="QID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EID" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="NextDue" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="Equipment_MaintainenceLog" Member="Equipment" ThisKey="QID" OtherKey="QID" Type="Equipment" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InventoryInfo" Member="InventoryInfos">
+    <Type Name="InventoryInfo">
+      <Column Name="InvID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ItemId" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LastRestocked" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="Item_InventoryInfo" Member="Item" ThisKey="ItemId" OtherKey="ItemId" Type="Item" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customers" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="CID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CellPhone" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LastVisited" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="DaysVisitedThisMonth" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Customer_StoreCard" Member="StoreCards" ThisKey="CID" OtherKey="CID" Type="StoreCard" />
+      <Association Name="Customer_Order" Member="Orders" ThisKey="CID" OtherKey="CID" Type="Order" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Categories" Member="Categories">
+    <Type Name="Category">
+      <Column Name="CatID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Category_StorePromotion" Member="StorePromotions" ThisKey="CatID" OtherKey="CatID" Type="StorePromotion" />
+      <Association Name="Category_Item" Member="Items" ThisKey="CatID" OtherKey="CatID" Type="Item" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Inventory" Member="Inventories">
+    <Type Name="Inventory">
+      <Column Name="InvID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DID" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Association Name="Department_Inventory" Member="Department" ThisKey="DID" OtherKey="DID" Type="Department" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Equipment" Member="Equipments">
+    <Type Name="Equipment">
+      <Column Name="QID" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DID" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Association Name="Equipment_SecurityLog" Member="SecurityLogs" ThisKey="QID" OtherKey="QID" Type="SecurityLog" />
+      <Association Name="Equipment_MaintainenceLog" Member="MaintainenceLog" ThisKey="QID" OtherKey="QID" Type="MaintainenceLog" Cardinality="One" />
+      <Association Name="Department_Equipment" Member="Department" ThisKey="DID" OtherKey="DID" Type="Department" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Items" Member="Items">
+    <Type Name="Item">
+      <Column Name="ItemId" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CatID" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="Item_OrderInformation" Member="OrderInformations" ThisKey="ItemId" OtherKey="ItemID" Type="OrderInformation" />
+      <Association Name="Item_InventoryInfo" Member="InventoryInfos" ThisKey="ItemId" OtherKey="ItemId" Type="InventoryInfo" />
+      <Association Name="Category_Item" Member="Category" ThisKey="CatID" OtherKey="CatID" Type="Category" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

@@ -1,0 +1,1 @@
+﻿Select * from StoreInfo s, Departments d where d.STRID = s.STRID
